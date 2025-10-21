@@ -101,41 +101,42 @@ sap.ui.define([
             oView.setModel(oDataModel);
         },
         onExcelExport() {
+            var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             var oTable = this.byId("employeeTreeTable");
             var oBinding = oTable.getBinding("rows");
             var aData = oBinding.getModel().getProperty("/Employees");
             var aExportData = this._convertTreeForExport(aData);
             var aCols = [
                 {
-                    label : "Employee ID",
+                    label : oBundle.getText("employeeID"),
                     property :"EmployeeID"
                 },
                 {
-                     label : "Employee Name",
+                     label : oBundle.getText("employeeName"),
                     property :"EmployeeName"
 
                 },
                 {
-                      label : "Designation",
+                      label : oBundle.getText("designation"),
                     property :"Designation"
                 },
                 {
-                       label : "Family Member Name",
+                       label :oBundle.getText("familyMemberName"),
                     property :"MemberName"
 
                 },
                 {
 
-                       label : "Relation to employee",
+                       label : oBundle.getText("relation"),
                     property :"Relationship"
                 },
                   {
 
-                       label : "Age",
+                       label : oBundle.getText("age"),
                     property :"Age"
                 }, {
 
-                       label : "Expense %",
+                       label :  oBundle.getText("expense"),
                     property :"ExpenseShare"
                 }
             ]
@@ -143,16 +144,16 @@ sap.ui.define([
                 workbook: {
                     columns: aCols,
                     context: {
-                        sheetName: "Employee Data Sheet"
+                        sheetName: oBundle.getText("sheetName")
                     }
                 },
                 dataSource: aExportData,
-                fileName: "Exported Tree table data.xlsx",
+                fileName: oBundle.getText("fileName"),
                 worker: false
             };
             var oSpreadsheet = new Spreadsheet(oSettings);
             oSpreadsheet.build().then(function () {
-                MessageToast.show("Exported excel data successfully ...");
+                MessageToast.show(oBundle.getText("successMessage"));
             }).finally(function () {
                 oSpreadsheet.destroy();
             })
