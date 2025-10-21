@@ -1,0 +1,91 @@
+<mvc:View
+    controllerName="com.example.treeexporttoexcel.controller.TreeTableView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <table:TreeTable
+                id="employeeTreeTable"
+                selectionMode="None"
+                enableColumnReordering="false"
+                rows="{ 
+       path : '/Employees',
+       parameters :{
+       arrayNames:['Employees','FamilyMembers']
+       }
+        }"
+            >
+               <table:extension>
+                 <OverflowToolbar>
+                        <Title text="{i18n>title}" />
+                        <ToolbarSpacer />
+                        <ToggleButton id="export_btn" text="{i18n>export_btn}" icon="sap-icon://excel-attachment" press="onExcelExport"/>
+                    </OverflowToolbar>
+               </table:extension>     
+                <table:columns>
+                    <table:Column>
+                        <table:label>
+                            <Text text="{i18n>employeeID}" />
+                        </table:label>
+                        <table:template>
+                            <Text text="{EmployeeID}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <table:label>
+                            <Text text="{i18n>employeeName}" />
+                        </table:label>
+                        <table:template>
+                            <Text text="{EmployeeName}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <table:label>
+                            <Text text="{i18n>designation}" />
+                        </table:label>
+                        <table:template>
+                            <Text text="{Designation} " />
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <table:label>
+                            <Text text="{i18n>familyMemberName}" />
+                        </table:label>
+                        <table:template>
+                            <Text text="{MemberName}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <table:label>
+                            <Text text="{i18n>relation}" />
+                        </table:label>
+                        <table:template>
+                            <Text text="{Relationship}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <table:label>
+                            <Text text="{i18n>age}" />
+                        </table:label>
+                        <table:template>
+                            <Text text="{Age}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column>
+                        <table:label>
+                            <Text text="{i18n>expense}" />
+                        </table:label>
+                        <table:template>
+                            <Text text="{ExpenseShare}" />
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+            </table:TreeTable>
+        </content>
+    </Page>
+</mvc:View>
