@@ -6,7 +6,6 @@
 >
     <Page
         id="page"
-        title="{i18n>title}"
     >
         <content>
             <table:TreeTable
@@ -22,7 +21,7 @@
             >
                <table:extension>
                  <OverflowToolbar>
-                        <Title text="{i18n>title}" />
+                        <Title  />
                         <ToolbarSpacer />
                         <ToggleButton id="export_btn" text="{i18n>export_btn}" icon="sap-icon://excel-attachment" press="onExcelExport"/>
                     </OverflowToolbar>
